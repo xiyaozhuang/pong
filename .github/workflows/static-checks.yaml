@@ -1,0 +1,20 @@
+name: Static checks
+on: push
+
+jobs:
+  static-checks:
+    name: Static checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Godot GDScript Toolkit
+        uses: Scony/godot-gdscript-toolkit@master
+
+      - name: Check linting
+        run: gdlint .
+
+      - name: Check formatting
+        run: gdformat --check .
